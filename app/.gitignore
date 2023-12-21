@@ -5,6 +5,7 @@ build/
 !**/src/test/**/build/
 file1.json
 file2.json
+.idea/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
