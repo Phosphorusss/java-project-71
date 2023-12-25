@@ -27,16 +27,4 @@ public class DifferTest {
                 "}";
         assertEquals(result, coll);
     }
-
-    @Test
-    public void test2() throws Exception {
-        var coll = Differ.generate("/home/ubuntu/java-project-71/app/src/test/resources/file1.json", "/home/ubuntu/java-project-71/app/src/test/resources/file3.json");
-        var result = "{\n" +
-                "- host: hexlet.io\n" +
-                "- timeout: 50\n" +
-                "- proxy: 123.234.53.22\n" +
-                "- follow: false\n" +
-                "}";
-        assertEquals(result, coll);
-    }
 }

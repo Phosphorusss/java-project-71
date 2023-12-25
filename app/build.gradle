@@ -24,7 +24,14 @@ dependencies {
 }
 
 test {
-    useJUnitPlatform()
+    test {
+        testLogging {
+            events "failed"
+            exceptionFormat "full"
+        }
+        useJUnitPlatform()
+        finalizedBy jacocoTestReport
+    }
 }
 
 compileJava {
