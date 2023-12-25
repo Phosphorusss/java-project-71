@@ -1,16 +1,12 @@
 package hexlet.code;
 
-import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
+import java.util.Map;
 import java.util.TreeSet;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Differ {
     public static String generate(String file1, String file2) throws Exception {
@@ -27,9 +23,16 @@ public class Differ {
         String content1 = Files.readString(path1);
         String content2 = Files.readString(path2);
 
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> data1 = mapper.readValue(content1, Map.class);
-        Map<String, Object> data2 = mapper.readValue(content2, Map.class);
+        Map<String, Object> data1 = new HashMap<>();
+        Map<String, Object> data2 = new HashMap<>();
+
+        if (readeFilePath1.endsWith(".json")) {
+            data1.putAll(Parser.parserJson(content1));
+            data2.putAll(Parser.parserJson(content2));
+        } else if (readeFilePath2.endsWith(".yml")) {
+            data1 = Parser.parserJson(content1);
+            data2 = Parser.parserJson(content2);
+        }
 
         Set<String> data1Set = new TreeSet<>(data1.keySet());
         Set<String> data2Set = new TreeSet<>(data2.keySet());
@@ -40,15 +43,15 @@ public class Differ {
         StringBuilder diff = new StringBuilder();
         diff.append("{\n");
         for (var key : keysAll) {
-            if(!data1.containsKey(key) && data2.containsKey(key)) {
+            if (!data1.containsKey(key) && data2.containsKey(key)) {
                 diff.append("+ ");
                 diff.append(key + ": ");
                 diff.append(data2.get(key) + "\n");
-            }else if (data1.containsKey(key) && !data2.containsKey(key)) {
+            } else if (data1.containsKey(key) && !data2.containsKey(key)) {
                 diff.append("- ");
                 diff.append(key + ": ");
                 diff.append(data1.get(key) + "\n");
-            } else if ( (data1.containsKey(key) && data2.containsKey(key) ) && ( !data1.get(key).equals(data2.get(key))) ) {
+            } else if ((data1.containsKey(key) && data2.containsKey(key)) && (!data1.get(key).equals(data2.get(key)))) {
                 diff.append("- ");
                 diff.append(key + ": ");
                 diff.append(data1.get(key) + "\n");
