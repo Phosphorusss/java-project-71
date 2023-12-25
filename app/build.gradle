@@ -32,5 +32,9 @@ compileJava {
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
 
-
-tasks.jacocoTestReport { reports { xml.required.set(true) } }
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+    }
+}
