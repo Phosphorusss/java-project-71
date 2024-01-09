@@ -16,15 +16,15 @@ public class Plain {
                     diff.append("Property " + "'" + element.get("key") + "'" + " was removed" + "\n");
                     break;
                 case "changed":
-                    diff.append("Property " + "'" + element.get("key") + "'" + " was updated.");
-                    diff.append(" From " + isCompositeProperty(isString(element.get("oldValue"))) + " to "
+                    diff.append("Property " + "'" + element.get("key") + "'" + " was updated.")
+                            .append(" From " + isCompositeProperty(isString(element.get("oldValue"))) + " to "
                             + isCompositeProperty(isString(element.get("newValue"))) + "\n");
                     break;
                 default:
                     break;
             }
         }
-        return diff.toString();
+        return diff.toString().trim();
     }
 
     public static Object isCompositeProperty(Object value) {
