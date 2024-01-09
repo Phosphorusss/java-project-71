@@ -7,10 +7,10 @@ public class Stylish {
     public static String stylish(List<Map<String, Object>> formationDiff) {
         StringBuilder diff = new StringBuilder();
         diff.append("{\n");
-        for (var element: formationDiff) {
+        for (var element : formationDiff) {
             switch ((String) element.get("status")) {
                 case "added":
-                    diff.append("+ " + element.get("key") +  ": ");
+                    diff.append("+ " + element.get("key") + ": ");
                     diff.append(element.get("value") + "\n");
                     break;
                 case "deleted":
@@ -30,6 +30,8 @@ public class Stylish {
                     diff.append(element.get("key") + ": ");
                     diff.append(element.get("newValue") + "\n");
                     break;
+                default:
+                    return null;
             }
         }
         diff.append("}");
