@@ -10,22 +10,27 @@ public class Stylish {
         for (var element : formationDiff) {
             switch ((String) element.get("status")) {
                 case "added":
+                    diff.append("  ");
                     diff.append("+ " + element.get("key") + ": ");
                     diff.append(element.get("value") + "\n");
                     break;
                 case "deleted":
+                    diff.append("  ");
                     diff.append("- ");
                     diff.append(element.get("key") + ": ");
                     diff.append(element.get("value") + "\n");
                     break;
                 case "unchanged":
+                    diff.append("  ");
                     diff.append("  " + element.get("key") + ": ");
                     diff.append(element.get("newValue") + "\n");
                     break;
                 case "changed":
+                    diff.append("  ");
                     diff.append("- ");
                     diff.append(element.get("key") + ": ");
                     diff.append(element.get("oldValue") + "\n");
+                    diff.append("  ");
                     diff.append("+ ");
                     diff.append(element.get("key") + ": ");
                     diff.append(element.get("newValue") + "\n");
