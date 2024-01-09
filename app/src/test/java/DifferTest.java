@@ -10,59 +10,78 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
-    private String jsonAndYmlStylist;
-    private String recursiveJsonAndYmlStyList;
-    private String jsonAndYmlPlain;
+    private String resultPlain;
+    private String resultStylish;
     private String resultJson;
+
     @BeforeEach
     public void beforeEach() throws IOException {
-        String path1 = "src/test/resources/jsonAndYmlStylist.txt";
-        Path path1Normalize = Paths.get(path1).toAbsolutePath().normalize();
-        jsonAndYmlStylist = Files.readString(path1Normalize);
+        String path1 = "src/test/resources/resultJson.txt";
+        Path path1Normalize = Paths.get(path1).normalize();
+        resultJson = Files.readString(path1Normalize);
 
-        String path2 = "src/test/resources/recursiveJsonAndYmlStyList.txt";
-        Path path2Normalize = Paths.get(path2).toAbsolutePath().normalize();
-        recursiveJsonAndYmlStyList = Files.readString(path2Normalize);
+        String path2 = "src/test/resources/resultPlain.txt";
+        Path path2Normalize = Paths.get(path2).normalize();
+        resultPlain = Files.readString(path2Normalize);
 
-        String path3 = "src/test/resources/jsonAndYmlPlain.txt";
-        Path path3Normalize = Paths.get(path3).toAbsolutePath().normalize();
-        jsonAndYmlPlain = Files.readString(path3Normalize);
-
-        String path4 = "src/test/resources/resultJson.txt";
-        Path path4Normalize = Paths.get(path4).toAbsolutePath().normalize();
-        resultJson = Files.readString(path4Normalize);
+        String path3 = "src/test/resources/resultStylish.txt";
+        Path path3Normalize = Paths.get(path3).normalize();
+        resultStylish = Files.readString(path3Normalize);
     }
+
     @Test
     public void testGenerate1() throws Exception {
-        var coll = Differ.generate("src/test/resources/file1.json",
-                "src/test/resources/file2.json", "stylish");
-        assertEquals(coll, jsonAndYmlStylist);
+        var coll = Differ.generate("src/test/resources/file3.json",
+                "src/test/resources/file4.json", "stylish");
+        assertEquals(coll, resultStylish);
     }
 
     @Test
     public void testGenerate2() throws Exception {
-        var coll = Differ.generate("src/test/resources/file1.yml",
-                "src/test/resources/file2.yml");
-        assertEquals(coll, jsonAndYmlStylist);
+        var coll = Differ.generate("src/test/resources/file3.json",
+                "src/test/resources/file4.json");
+        assertEquals(coll, resultStylish);
     }
 
     @Test
     public void testGenerate3() throws Exception {
         var coll = Differ.generate("src/test/resources/file3.json",
-                "src/test/resources/file4.json");
-        assertEquals(coll, recursiveJsonAndYmlStyList);
+                "src/test/resources/file4.json", "plain");
+        assertEquals(coll, resultPlain);
     }
 
     @Test
     public void testGenerate4() throws Exception {
         var coll = Differ.generate("src/test/resources/file3.json",
-                "src/test/resources/file4.json", "plain");
-        assertEquals(coll, jsonAndYmlPlain);
-    }
-    @Test
-    public void testGenerate5() throws Exception {
-        var coll = Differ.generate("src/test/resources/file3.json",
                 "src/test/resources/file4.json", "json");
         assertEquals(coll, resultJson);
+    }
+
+    @Test
+    public void testGenerate5() throws Exception {
+        var coll = Differ.generate("src/test/resources/file1.yml",
+                "src/test/resources/file2.yml", "json");
+        assertEquals(coll, resultJson);
+    }
+
+    @Test
+    public void testGenerate6() throws Exception {
+        var coll = Differ.generate("src/test/resources/file1.yml",
+                "src/test/resources/file2.yml", "plain");
+        assertEquals(coll, resultPlain);
+    }
+
+    @Test
+    public void testGenerate7() throws Exception {
+        var coll = Differ.generate("src/test/resources/file1.yml",
+                "src/test/resources/file2.yml", "stylish");
+        assertEquals(coll, resultStylish);
+    }
+
+    @Test
+    public void testGenerate8() throws Exception {
+        var coll = Differ.generate("src/test/resources/file1.yml",
+                "src/test/resources/file2.yml");
+        assertEquals(coll, resultStylish);
     }
 }

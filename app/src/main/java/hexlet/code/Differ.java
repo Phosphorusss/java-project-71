@@ -33,8 +33,8 @@ public class Differ {
             data1 = Parser.parserYml(content1);
             data2 = Parser.parserYml(content2);
         }
-        var f1 = FormationDiff.formationDiff(data1, data2);
-        return Formatter.formatter(format, f1);
+        var formationDiff = FormationDiff.formationDiff(data1, data2);
+        return Formatter.formatter(format, formationDiff);
     }
 
     public static String generate(String file1, String file2) throws Exception {

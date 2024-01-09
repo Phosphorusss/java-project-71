@@ -13,8 +13,7 @@ public class Formatter {
             case "json":
                 return Json.json(diffTemp);
             default:
-                break;
+                return null;
         }
-        return "";
     }
 }

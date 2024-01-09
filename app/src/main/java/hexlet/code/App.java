@@ -32,7 +32,6 @@ public class App implements Callable<Integer> {
         return null;
     }
 
-
     public static void main(String[] args) {
         System.exit(new CommandLine(new App()).execute(args));
     }

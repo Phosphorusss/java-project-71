@@ -21,7 +21,7 @@ public class Plain {
                             + isCompositeProperty(isString(element.get("newValue"))) + "\n");
                     break;
                 default:
-                    break;
+                    return null;
             }
         }
         return diff.toString();
