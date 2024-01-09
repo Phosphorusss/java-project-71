@@ -33,55 +33,55 @@ public class DifferTest {
     public void testGenerate1() throws Exception {
         var coll = Differ.generate("src/test/resources/file3.json",
                 "src/test/resources/file4.json", "stylish");
-        assertEquals(coll, resultStylish);
+        assertEquals(resultStylish, coll);
     }
 
     @Test
     public void testGenerate2() throws Exception {
         var coll = Differ.generate("src/test/resources/file3.json",
                 "src/test/resources/file4.json");
-        assertEquals(coll, resultStylish);
+        assertEquals(resultStylish, coll);
     }
 
     @Test
     public void testGenerate3() throws Exception {
         var coll = Differ.generate("src/test/resources/file3.json",
                 "src/test/resources/file4.json", "plain");
-        assertEquals(coll, resultPlain);
+        assertEquals(resultPlain, coll);
     }
 
     @Test
     public void testGenerate4() throws Exception {
         var coll = Differ.generate("src/test/resources/file3.json",
                 "src/test/resources/file4.json", "json");
-        assertEquals(coll, resultJson);
+        assertEquals(resultJson, coll);
     }
 
     @Test
     public void testGenerate5() throws Exception {
         var coll = Differ.generate("src/test/resources/file1.yml",
                 "src/test/resources/file2.yml", "json");
-        assertEquals(coll, resultJson);
+        assertEquals(resultJson, coll);
     }
 
     @Test
     public void testGenerate6() throws Exception {
         var coll = Differ.generate("src/test/resources/file1.yml",
                 "src/test/resources/file2.yml", "plain");
-        assertEquals(coll, resultPlain);
+        assertEquals(resultPlain, coll);
     }
 
     @Test
     public void testGenerate7() throws Exception {
         var coll = Differ.generate("src/test/resources/file1.yml",
                 "src/test/resources/file2.yml", "stylish");
-        assertEquals(coll, resultStylish);
+        assertEquals(resultStylish, coll);
     }
 
     @Test
     public void testGenerate8() throws Exception {
         var coll = Differ.generate("src/test/resources/file1.yml",
                 "src/test/resources/file2.yml");
-        assertEquals(coll, resultStylish);
+        assertEquals(resultStylish, coll);
     }
 }
