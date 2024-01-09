@@ -20,12 +20,18 @@ public class App implements Callable<Integer> {
     @Option(names = {"-v", "--version"}, versionHelp = true, description = "Print version information and exit.")
     boolean usageVersion;
     @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
-    String[] format;
+    String format;
+
     @Override
     public Integer call() throws Exception {
-        System.out.println(Differ.generate(filepath1, filepath2));
+        if (format == null) {
+            System.out.println(Differ.generate(filepath1, filepath2));
+        } else {
+            System.out.println(Differ.generate(filepath1, filepath2, format));
+        }
         return null;
     }
+
 
     public static void main(String[] args) {
         System.exit(new CommandLine(new App()).execute(args));
