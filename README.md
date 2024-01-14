@@ -11,5 +11,23 @@
 Возможности утилиты:
 - Поддержка разных входных форматов: yaml и json
 - Генерация отчета в виде plain text, stylish и json
+
+Использование:
+
+1. Для запуска необходимо ввести путь до скомпилированного файла и указать пути к файлам, которые нужно сравнить.
+
+Пример 
+`./build/install/app/bin/app FilePath1 FilePath2`
+
+2. Для выбора формата вывода нужно указать ключ -f и желаемый формат. По умолчанию будет выбран формат "stylish"
+
+Пример
+`./build/install/app/bin/app -f json file1.yml file2.yml`
+
+Для просмотра:
+- справки используется ключ -h.
+- версии используется ключ -V
+
 Пример работы:
+
 [![asciicast](https://asciinema.org/a/6T5eB7FB2zuGHqGBN4ue6pAlq.svg)](https://asciinema.org/a/6T5eB7FB2zuGHqGBN4ue6pAlq)
