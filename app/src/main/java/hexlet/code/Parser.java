@@ -10,7 +10,7 @@ public class Parser {
 
     public static Map<String, Object> selectParser(String content, String filePath) throws Exception {
         int index = filePath.indexOf(".");
-        String format = filePath.substring(index);
+        String format = filePath.substring(index + 1);
         System.out.println(format);
         switch (format) {
             case "json":
